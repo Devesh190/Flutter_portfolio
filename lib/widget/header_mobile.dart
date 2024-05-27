@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../styles/style.dart';
-import '../widget/site_logo.dart';
+import 'site_logo.dart';
 
 class HeaderMobile extends StatelessWidget {
   const HeaderMobile({super.key, this.onLogoTap, this.onMenuTap});
@@ -11,9 +11,9 @@ class HeaderMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
-      margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
-      padding: const EdgeInsets.all(5),
+      height: 60,
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.all(10),
       decoration: kHedarDecoration,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

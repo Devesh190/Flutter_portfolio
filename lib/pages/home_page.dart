@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:portfolio/styles/style.dart';
 import 'package:portfolio/widget/header_desktop.dart';
+import 'package:portfolio/widget/header_mobile.dart';
 import 'package:portfolio/widget/site_logo.dart';
 
 import '../constants/colors.dart';
+import '../constants/nav_items.dart';
+import '../constants/size.dart';
+import '../widget/Mobile_drawer.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -15,51 +21,48 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: CustomColor.scaffoldBg,
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          //MAIN
-          // const HeaderDesktop(),
-          Container(
-            height: 50,
-            margin: const EdgeInsets.fromLTRB(40, 5, 20, 5),
-            padding: const EdgeInsets.all(5),
-            decoration: kHedarDecoration,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SiteLogo(
-                  onTap: () {},
-                ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-              ],
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        key: scaffoldKey,
+        backgroundColor: CustomColor.scaffoldBg,
+        endDrawer: constraints.maxWidth >= kMinDesktopWith ? null : const MobileDrawer(),
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          children: [
+            //MAIN
+            constraints.maxWidth >= kMinDesktopWith
+                ? const HeaderDesktop()
+                : HeaderMobile(
+                    onLogoTap: () {},
+                    onMenuTap: () {
+                      scaffoldKey.currentState?.openEndDrawer();
+                    },
+                  ),
+            Container(
+              height: 500,
+              width: double.maxFinite,
             ),
-          ),
-          Container(
-            height: 500,
-            width: double.maxFinite,
-          ),
-//PROJECTS
-          Container(
-            height: 500,
-            width: double.maxFinite,
-            color: Colors.blueGrey,
-          ),
-          //CONTACT
-          Container(
-            height: 500,
-            width: double.maxFinite,
-          ),
-          //FOOTER
-          Container(
-            height: 500,
-            width: double.maxFinite,
-            color: Colors.blueGrey,
-          ),
-        ],
-      ),
-    );
+            //PROJECTS
+            Container(
+              height: 500,
+              width: double.maxFinite,
+              color: Colors.blueGrey,
+            ),
+            //CONTACT
+            Container(
+              height: 500,
+              width: double.maxFinite,
+            ),
+            //FOOTER
+            Container(
+              height: 500,
+              width: double.maxFinite,
+              color: Colors.blueGrey,
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
