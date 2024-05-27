@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -10,6 +11,7 @@ import '../constants/colors.dart';
 import '../constants/nav_items.dart';
 import '../constants/size.dart';
 import '../widget/Mobile_drawer.dart';
+import '../widget/main_desktop.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,7 +28,9 @@ class _HomePageState extends State<HomePage> {
       return Scaffold(
         key: scaffoldKey,
         backgroundColor: CustomColor.scaffoldBg,
-        endDrawer: constraints.maxWidth >= kMinDesktopWith ? null : const MobileDrawer(),
+        endDrawer: constraints.maxWidth >= kMinDesktopWith
+            ? null
+            : const MobileDrawer(),
         body: ListView(
           scrollDirection: Axis.vertical,
           children: [
@@ -39,6 +43,7 @@ class _HomePageState extends State<HomePage> {
                       scaffoldKey.currentState?.openEndDrawer();
                     },
                   ),
+            const MainDesktop(),
             Container(
               height: 500,
               width: double.maxFinite,
