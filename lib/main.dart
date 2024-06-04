@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/constants/colors.dart';
 import 'package:portfolio/pages/home_page.dart';
 
 void main() {
@@ -13,7 +15,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Devesh',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        primaryColor: CustomColor.primaryColor,
+        scaffoldBackgroundColor: CustomColor.bgColor,
+        canvasColor: CustomColor.bgColor,
+        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+        .apply(bodyColor: Colors.white)
+        .copyWith(
+          bodyLarge: const TextStyle(color: CustomColor.bodyTextColor),
+          bodyMedium: const TextStyle(color: CustomColor.bodyTextColor)
+        )
+      ),
       home: const HomePage(),
     );
   }
