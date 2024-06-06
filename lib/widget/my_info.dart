@@ -7,7 +7,7 @@ class MyInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AspectRatio(
-        aspectRatio: 1.23,
+        aspectRatio: 2,
         child: Container(
           color: const Color(0XFF242430),
           child: Column(
@@ -28,6 +28,8 @@ class MyInfo extends StatelessWidget {
               const Text(
                 "Full stack mobile developer",
                 textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: TextStyle(fontWeight: FontWeight.w200, height: 1.5),
               ),
               const Spacer(
