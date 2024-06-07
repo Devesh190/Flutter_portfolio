@@ -16,6 +16,7 @@ class MainScreen extends StatelessWidget {
           child: Row(
             children: [
               const Expanded(flex: 2, child: SideMenu()),
+              const SizedBox(width: defaultPadding),
               Expanded(
                   flex: 7,
                   child: SingleChildScrollView(
