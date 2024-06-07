@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import '../constants/size.dart';
 import '../widget/side_menu.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class MainScreen extends StatelessWidget {
+  final List<Widget> children;
+  const MainScreen({super.key, required this.children});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,11 +17,12 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Expanded(flex: 2, child: SideMenu()),
               Expanded(
-                flex: 7,
-                child: Container(
-                  color: Colors.blue,
-                ),
-              )
+                  flex: 7,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [...children],
+                    ),
+                  ))
             ],
           ),
         ),
